@@ -1,0 +1,29 @@
+n = input('Enter the output code length: ');
+k = input('Enter the input code length: ');
+d = input('Enter the message ');
+g = input('Enter generator polynomial ');
+dx = poly2sym(d);
+gx = poly2sym(g);
+x = sym('x', 'real');
+m = x^(n-k) * dx;
+m1 = sym2poly(m);
+gx_poly = sym2poly(gx);
+[q, r] = deconv(m1, gx_poly);
+r1 = mod(r, 2);
+c = mod(m1 + r1, 2);
+disp('The encoded codeword is: ');
+disp(c);
+re =input('Enter received codeword ');
+rex = sym2poly(poly2sym(re));
+[q, r1] = deconv(rex, gx_poly);
+r2 = mod(r1, 2);
+if any(r2)
+disp('Error.');
+else
+disp('No error.');
+end
+og = mod(rex - r2, 2);
+disp('The remainder is: ');
+disp(r2);
+disp('The original message is: ');
+disp(og);
