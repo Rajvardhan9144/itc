@@ -1,0 +1,14 @@
+n = input('Enter the output code length: ');
+k = input('Enter the input code length: ');
+G=bchgenpoly(n, k);
+disp('The generator polunomial for (n,k) is:');
+disp(G);
+message=0:1:(2^k)-1;
+M=de2bi(message, 'left-msb');
+M1=gf(M);
+disp('Parity bit at end of codeword');
+code=bchenc(M1,n,k);
+t= bchnumerr(n,k);
+R=input('Enter received codeword');
+R1=gf(R);
+decodemsg=bchdec(R1,n,k);
