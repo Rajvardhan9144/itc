@@ -1,0 +1,29 @@
+symbol=1:7
+P=[0.45,0.15,0.1,0.1,0.08,0.08,0.04];
+[dict,arg1]=huffmandict(symbol,P);
+disp('arg code length is')
+disp(arg1)
+%Displaying dictionary ->command window
+for i=1:length(symbol)
+temp{i,2}=num2str(dict{i,2});
+end
+disp('temp')
+disp(temp)
+%entropy
+H=0;
+for i=1:length(P)
+H= H+P(i)*log2(1/P(i));
+end
+disp('entropy')
+disp(H)
+%efficiency
+n =H/arg1*100
+disp(n)
+%redundancy
+Y= 100-n
+disp(Y)
+%encoding
+m=input('112');
+code=huffmanenco(m,dict)
+%decoding
+output=huffmandeco(code,dict)
