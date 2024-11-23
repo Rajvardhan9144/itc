@@ -1,0 +1,22 @@
+%Accept K,N,Message,NS,G1,G2,G3 as iput
+N=input("Enter the value of N: ");
+k=input("Enter the value of K: ");
+Message=input("Enter the value of Message: ");
+NS=input("Enter the value of NS: ");
+G1=input("Enter the value of G1: ");
+%[1 0 0]
+G2=input("Enter the value of G2: ");
+%[1 0 1]
+G3=input("Enter the value of G3: ");
+%[1 1 1]
+K= NS + 1;
+%Call poly2trellis
+trellis=poly2trellis(K,[4,5,7]);
+convenc(Message,trellis)
+R=input("Enter the value of R: ");
+disp(R);
+%[1 0 1 0 0 1 1 0 1 1 1 0]
+tblen=3;
+dec_out=vitdec(R,trellis,tblen,"trunc","hard");
+disp("Output is : ");
+disp(dec_out);
