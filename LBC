@@ -1,0 +1,46 @@
+%N,K,P
+N=input("Enter the value of N: ");
+disp(N);%6
+K=input("Enter the value of K: ");
+disp(K);%3
+P=input("Enter the value of P: ");
+disp('P');
+disp(P);
+%[1 1 1;1 1 0;0 1 1]
+%Create D vector
+D=0:2^K-1;
+disp('D');
+disp(D);
+Binary=dec2bin(D);
+disp('Binary');
+disp(Binary);
+%G
+I=eye(K);
+disp('I');
+disp(I);
+G=[I P];
+disp('G');
+disp(G);
+%C
+C=Binary*G;
+C1=rem(C,2);
+disp('C1');
+disp(C1);
+R=input("Enter the value of R: ");
+disp(R);
+%[1 0 1 1 0 1]
+H=[P' eye(N-K)];
+disp(H);
+S=R*H';
+S1=rem(S,2);
+disp("S1 Output : ")
+disp(S1);
+if S1==0
+disp("No Error");
+else
+disp("Error Present");
+S11=[0 0 0 S1]
+Output=xor(R,S11);
+disp("Corrected Output : ")
+disp(Output);
+end
